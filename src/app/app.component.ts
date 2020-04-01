@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {DataModel} from './data.model';
+import { DataModel } from './data.model';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,9 @@ import {DataModel} from './data.model';
 })
 export class AppComponent implements OnInit {
   apiKey = 'cd42375949d1ab7850227235693b257d';
-  city = 'London';
-  loadedData: DataModel[] = [];
+  city: string;
   wheaterData: any;
+  isFetching = false;
 
   constructor(private http: HttpClient) {}
 
@@ -19,16 +19,17 @@ export class AppComponent implements OnInit {
     this.fetchPost();
   }
 
-  // onSearch() {
-  //   this.http.post('api.openweathermap.org/data/2.5/weather?q={' + this.city + '}&appid={' + this.apiKey + '}')
-  // }
-
   onFetchWheater() {
     this.fetchPost();
   }
 
+    updateCity(event: Event) {
+      this.city = (<HTMLInputElement>event.target).value;
+    }
+
   private fetchPost() {
-    this.http.get<DataModel[]>(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${this.apiKey}`)
+    this.isFetching = true;
+    this.http.get<DataModel>(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=${this.apiKey}&lang=pl`)
       // .pipe(map(responseData => {
       //   const dataArray = [];
       //   for (const key in responseData) {
