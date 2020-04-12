@@ -1,0 +1,31 @@
+<h3>Sprawdź swoją pogodę</h3>
+
+<form form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="form-group">
+        <label> Miasto </label>
+        <input type="text" class="form-control" name="simpleCity" ngModel>
+    </div>
+
+    <button
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="!f.valid">
+    Szukaj
+    </button>
+</form>
+
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <p *ngIf="wheaterData === undefined">No posts available!</p>
+        <ul class="list-group" *ngIf="wheaterData !== undefined">
+            <li class="list-group-item">
+                <h3>{{wheaterData.name}}</h3>
+                <p>Temperatura: {{wheaterData.main.temp}} &#8451;</p>
+                <p>Temperatura odczuwalna: {{wheaterData.main.feels_like}} &#8451;</p>
+                <p>Ciśnienie: {{wheaterData.main.pressure}} hPa</p>
+                <p>Wilgotność: {{wheaterData.main.humidity}} %</p>
+                <p>Szybkość wiatru: {{wheaterData.wind.speed}} </p>
+            </li>
+        </ul>
+    </div>
+</div>
