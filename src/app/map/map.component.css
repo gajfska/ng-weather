@@ -9,11 +9,11 @@
 
 .map-frame {
     border: 2px solid black;
-    height: 504px;
-    width: 504px;
+    height: 600px;
+    width: 100%;
 }
 
 #map {
-    height: 500px;
-    width: 500px;
+    height: 596px;
+    width: 100%;
 }

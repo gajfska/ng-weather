@@ -1,8 +1,6 @@
 import {AfterViewInit, Component} from '@angular/core';
-import { MakerService} from '../services/maker.service';
 import * as L from 'leaflet';
 import {WheaterService} from '../wheater/wheater.service';
-import {LatLngTuple} from 'leaflet';
 import {tap} from 'rxjs/operators';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
@@ -28,39 +26,28 @@ L.Marker.prototype.options.icon = iconDefault;
 export class MapComponent implements AfterViewInit {
     private map;
 
-    constructor(private makerService: MakerService,
-                private wheaterService: WheaterService) {
-        wheaterService.coordObservable
-            .pipe(tap( data => {
-                console.log(data);
-            }))
-            // .subscribe({
-            //     next(response) { console.log(response); },
-            //     error(err) { console.error('Error: ' + err); },
-            //     complete() { console.log('Completed'); }
-            // });
+    constructor(private wheaterService: WheaterService) {
+        this.wheaterService.wheaterObservable
             .subscribe( coord => {
-            // const niewiem = LatLngTuple()
-            L.circle([coord[1], coord[0]],
-                {
-                    color: 'red',
-                    fillColor: '#f03',
-                    fillOpacity: 0.5,
-                    radius: 2000
-                }).addTo(this.map);
-        });
+                console.log('Coord');
+                console.log(coord);
+                this.drawCircle(coord.coord.lat, coord.coord.lon);
+            });
+
+        // wheaterService.coordObservable
+        //     .subscribe( coord => {
+        //         this.drawCircle(coord[1], coord[0]);
+        // });
     }
 
     ngAfterViewInit(): void {
         this.initMap();
-        // this.makerService.makeCapitalMarkers(this.map);
-
     }
 
     private initMap(): void {
         this.map = L.map('map', {
             center: [ 54.3520, 18.6466 ],
-            zoom: 9
+            zoom: 10
         });
         const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -68,5 +55,16 @@ export class MapComponent implements AfterViewInit {
         });
 
         tiles.addTo(this.map);
+    }
+
+    drawCircle(lat: number, lng: number) {
+        this.map.panTo(new L.LatLng(lat, lng));
+        L.circle([lat, lng],
+            {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 2000
+            }).addTo(this.map);
     }
 }

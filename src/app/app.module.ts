@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {MapComponent} from './map/map.component';
-import {MakerService} from './services/maker.service';
 import {WheaterComponent} from './wheater/wheater.component';
 
 @NgModule({
@@ -19,7 +18,7 @@ import {WheaterComponent} from './wheater/wheater.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [MakerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

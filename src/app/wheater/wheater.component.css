@@ -1,0 +1,38 @@
+.weather-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 30px;
+}
+
+.weather-frame {
+    border: 2px solid black;
+    height: 600px;
+    width: 100%;
+}
+
+#lilBack {
+    width: 100%;
+    height: 100px;
+    background-image: url('../../assets/img/defoult.jpeg');
+    background-position: center;
+}
+
+h3 {
+    margin-left: 20px;
+}
+
+.form-group {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.btn-one {
+    margin-left: 20px;
+}
+
+.list-group {
+    margin-right: -20px;
+}
