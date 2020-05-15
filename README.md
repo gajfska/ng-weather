@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-A simple application that allows you to check the current weather for a given city. The city is marked on the map next to it.
+A simple application that allows you to check the current weather for a given city. The city is marked on the map next to it. The application is not responsive, it looks best on devices with a width above 992px.
 
 ## Tech/framework used
 
@@ -22,6 +22,7 @@ Next run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The 
 
 ## Live
 
+http://pogoda.gajska.pl
 
 
 
