@@ -1,7 +1,6 @@
 import {AfterViewInit, Component} from '@angular/core';
 import * as L from 'leaflet';
 import {WheaterService} from '../wheater/wheater.service';
-import {tap} from 'rxjs/operators';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -29,9 +28,11 @@ export class MapComponent implements AfterViewInit {
     constructor(private wheaterService: WheaterService) {
         this.wheaterService.wheaterObservable
             .subscribe( coord => {
+                if (coord !== undefined) {
+                    this.drawCircle(coord.coord.lat, coord.coord.lon);
+                }
                 console.log('Coord');
                 console.log(coord);
-                this.drawCircle(coord.coord.lat, coord.coord.lon);
             });
 
         // wheaterService.coordObservable

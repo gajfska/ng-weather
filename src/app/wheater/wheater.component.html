@@ -18,9 +18,9 @@
         </form>
 
         <div class="row">
-            <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <div class="col-sm-12 col-md-6 col-md-offset-3">
 
-                <div class="alert alert-danger" *ngIf="wheaterData === undefined">
+                <div class="alert alert-danger" *ngIf="isFetching === false && wheaterData === undefined">
                     <h2>Error!</h2>
                     <p>Nie ma takiego miasta!</p>
                 </div>

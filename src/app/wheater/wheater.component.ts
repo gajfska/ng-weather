@@ -11,9 +11,9 @@ import {WheaterService} from './wheater.service';
 })
 export class WheaterComponent implements OnInit {
     @ViewChild('f', {static: false}) singForm: NgForm;
-    city = '';
+    city: string;
     wheaterData: WeatherRootObject;
-    isFetching = false;
+    isFetching: boolean;
     myDiv: any;
     error: null;
 
@@ -21,7 +21,12 @@ export class WheaterComponent implements OnInit {
                  private wheaterService: WheaterService) {
         this.wheaterService.wheaterObservable.subscribe(wheater => {
             this.wheaterData = wheater;
-            this.changeColor(this.wheaterData.weather[0].main);
+            this.isFetching = false;
+
+            if (wheater !== undefined) {
+                this.changeColor(this.wheaterData.weather[0].main);
+            }
+
         });
     }
 

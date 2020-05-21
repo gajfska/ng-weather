@@ -11,16 +11,16 @@ export class WheaterService {
 
     citySubject = new Subject<string>();
     apiKey = 'cd42375949d1ab7850227235693b257d';
-
-    coordObservable: Observable<number[]> = this.citySubject.pipe(
-        flatMap(city => {
-            return this.http.get<RootObject>(`https://nominatim.openstreetmap.org/search?city=${city}&format=geojson&accept-language=PL`);
-        }), filter(undefinedData => {
-            return undefinedData.features[0] !== undefined;
-        }),
-        map(data => {
-            return data.features[0].geometry.coordinates;
-        }));
+    //
+    // coordObservable: Observable<number[]> = this.citySubject.pipe(
+    //     flatMap(city => {
+    //         return this.http.get<RootObject>(`https://nominatim.openstreetmap.org/search?city=${city}&format=geojson&accept-language=PL`);
+    //     }), filter(undefinedData => {
+    //         return undefinedData.features[0] !== undefined;
+    //     }),
+    //     map(data => {
+    //         return data.features[0].geometry.coordinates;
+    //     }));
 
     wheaterObservable: Observable<WeatherRootObject> = this.citySubject.pipe(
         flatMap(city => {
@@ -32,8 +32,6 @@ export class WheaterService {
                         console.log(err);
                         return of(undefined);
                     }));
-        }), filter(data => {
-            return data !== undefined;
         }), share());
 
 
