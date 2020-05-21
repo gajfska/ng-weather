@@ -10,6 +10,7 @@ A simple application that allows you to check the current weather for a given ci
  - Angular 9.0.4
  - CSS
  - Bootstrap
+ - RxJS
  - API from Open Weather https://openweathermap.org/api
  
 ## Installation
