@@ -23,5 +23,5 @@ Next run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The 
 
 ## Live
 
-http://pogoda.gajska.pl
+https://pogoda.gajska.pl
 
